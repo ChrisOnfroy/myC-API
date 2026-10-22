@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyApp.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:MyApp.Domain.Abstraccions.BaseEntity">
+            <summary>
+            Clase base común para todas las entidades.
+            Contiene las propiedades estándar que toda tabla/entidad debe tener: Id, CreatedAt y UpdatedAt.
+            </summary>
+        </member>
+        <member name="P:MyApp.Domain.Abstraccions.BaseEntity.Id">
+            <summary>
+            Identificador único de la entidad (GUID).
+            </summary>
+        </member>
+        <member name="P:MyApp.Domain.Abstraccions.BaseEntity.CreatedAt">
+            <summary>
+            Fecha y hora en que se creó el registro (en UTC).
+            </summary>
+        </member>
+        <member name="P:MyApp.Domain.Abstraccions.BaseEntity.UpdatedAt">
+            <summary>
+            Fecha y hora de la última modificación (nulo si nunca se ha modificado).
+            </summary>
+        </member>
+        <member name="T:MyApp.Domain.Entities.Category">
+            <summary>
+            Entidad que representa una Categoría de productos.
+            </summary>
+        </member>
+        <member name="M:MyApp.Domain.Entities.Category.Update(System.String,System.String)">
+            <summary>
+            Método básico para actualizar la categoría.
+            </summary>
+        </member>
+        <member name="M:MyApp.Domain.Entities.Category.Deactivate">
+            <summary>
+            Desactiva la categoría.
+            </summary>
+        </member>
+        <member name="T:MyApp.Domain.Entities.Customer">
+            <summary>
+            Entidad que representa a un Cliente en el sistema.
+            Hereda de BaseEntity para tener Id, CreatedAt y UpdatedAt automáticamente.
+            </summary>
+        </member>
+        <member name="M:MyApp.Domain.Entities.Customer.Update(System.String,System.String,System.String)">
+            <summary>
+            Método básico para actualizar los datos del cliente.
+            Actualiza también la fecha UpdatedAt automáticamente.
+            </summary>
+        </member>
+        <member name="M:MyApp.Domain.Entities.Customer.Deactivate">
+            <summary>
+            Desactiva al cliente (borrado lógico).
+            </summary>
+        </member>
+        <member name="T:MyApp.Domain.Entities.Product">
+            <summary>
+            Entidad que representa un Producto en el catálogo.
+            Usa tipos simples como decimal para el precio y string para el SKU.
+            </summary>
+        </member>
+        <member name="M:MyApp.Domain.Entities.Product.Update(System.String,System.String,System.Decimal,System.Int32,System.Guid)">
+            <summary>
+            Método básico para actualizar los datos del producto.
+            </summary>
+        </member>
+        <member name="M:MyApp.Domain.Entities.Product.Deactivate">
+            <summary>
+            Desactiva el producto en catálogo.
+            </summary>
+        </member>
+        <member name="T:MyApp.Domain.Enums.CustomerStatus">
+            <summary>
+            Estados posibles de una cuenta de cliente en el dominio.
+            </summary>
+        </member>
+        <member name="F:MyApp.Domain.Enums.CustomerStatus.Active">
+            <summary>
+            Cliente activo para realizar operaciones.
+            </summary>
+        </member>
+        <member name="F:MyApp.Domain.Enums.CustomerStatus.Inactive">
+            <summary>
+            Cliente inactivo o dado de baja lógica.
+            </summary>
+        </member>
+        <member name="F:MyApp.Domain.Enums.CustomerStatus.Suspended">
+            <summary>
+            Cliente suspendido por incumplimiento de términos.
+            </summary>
+        </member>
+        <member name="T:MyApp.Domain.Enums.ProductStatus">
+            <summary>
+            Estados posibles de un producto en el catálogo.
+            </summary>
+        </member>
+        <member name="F:MyApp.Domain.Enums.ProductStatus.Active">
+            <summary>
+            Producto activo y disponible para la venta.
+            </summary>
+        </member>
+        <member name="F:MyApp.Domain.Enums.ProductStatus.Inactive">
+            <summary>
+            Producto inactivo o pausado.
+            </summary>
+        </member>
+        <member name="F:MyApp.Domain.Enums.ProductStatus.Discontinued">
+            <summary>
+            Producto descontinuado definitivamente.
+            </summary>
+        </member>
+        <member name="T:MyApp.Domain.Errors.NotFoundException">
+            <summary>
+            Excepción lanzada cuando no se encuentra un recurso solicitado (mapea a 404 Not Found).
+            </summary>
+        </member>
+        <member name="T:MyApp.Domain.Errors.BadRequestException">
+            <summary>
+            Excepción lanzada cuando hay un error en la solicitud o regla de negocio (mapea a 400 Bad Request).
+            </summary>
+        </member>
+        <member name="T:MyApp.Domain.Events.CustomerCreatedEvent">
+            <summary>
+            Evento de dominio emitido cuando se crea un nuevo cliente.
+            </summary>
+            <param name="CustomerId">Identificador del cliente.</param>
+            <param name="Email">Correo del cliente.</param>
+        </member>
+        <member name="M:MyApp.Domain.Events.CustomerCreatedEvent.#ctor(System.Guid,System.String)">
+            <summary>
+            Evento de dominio emitido cuando se crea un nuevo cliente.
+            </summary>
+            <param name="CustomerId">Identificador del cliente.</param>
+            <param name="Email">Correo del cliente.</param>
+        </member>
+        <member name="P:MyApp.Domain.Events.CustomerCreatedEvent.CustomerId">
+            <summary>Identificador del cliente.</summary>
+        </member>
+        <member name="P:MyApp.Domain.Events.CustomerCreatedEvent.Email">
+            <summary>Correo del cliente.</summary>
+        </member>
+        <member name="T:MyApp.Domain.Events.IDomainEvent">
+            <summary>
+            Contrato base para eventos de dominio en el sistema.
+            </summary>
+        </member>
+        <member name="P:MyApp.Domain.Events.IDomainEvent.EventId">
+            <summary>
+            Identificador único del evento de dominio.
+            </summary>
+        </member>
+        <member name="P:MyApp.Domain.Events.IDomainEvent.OccurredOn">
+            <summary>
+            Fecha y hora en formato UTC en la que ocurrió el evento de dominio.
+            </summary>
+        </member>
+        <member name="T:MyApp.Domain.Events.ProductCreatedEvent">
+            <summary>
+            Evento de dominio emitido cuando se crea un nuevo producto en catálogo.
+            </summary>
+            <param name="ProductId">Identificador del producto.</param>
+            <param name="Sku">Código SKU asignado.</param>
+        </member>
+        <member name="M:MyApp.Domain.Events.ProductCreatedEvent.#ctor(System.Guid,System.String)">
+            <summary>
+            Evento de dominio emitido cuando se crea un nuevo producto en catálogo.
+            </summary>
+            <param name="ProductId">Identificador del producto.</param>
+            <param name="Sku">Código SKU asignado.</param>
+        </member>
+        <member name="P:MyApp.Domain.Events.ProductCreatedEvent.ProductId">
+            <summary>Identificador del producto.</summary>
+        </member>
+        <member name="P:MyApp.Domain.Events.ProductCreatedEvent.Sku">
+            <summary>Código SKU asignado.</summary>
+        </member>
+        <member name="T:MyApp.Domain.ValueObjects.Address">
+            <summary>
+            Ejemplo didáctico de Objeto de Valor (Value Object).
+            En C# moderno, los Value Objects se representan fácilmente con records, 
+            ya que comparan por valor y no por identidad sin necesidad de clases complejas.
+            </summary>
+            <param name="Street">Calle y número.</param>
+            <param name="City">Ciudad.</param>
+            <param name="Country">País.</param>
+        </member>
+        <member name="M:MyApp.Domain.ValueObjects.Address.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Ejemplo didáctico de Objeto de Valor (Value Object).
+            En C# moderno, los Value Objects se representan fácilmente con records, 
+            ya que comparan por valor y no por identidad sin necesidad de clases complejas.
+            </summary>
+            <param name="Street">Calle y número.</param>
+            <param name="City">Ciudad.</param>
+            <param name="Country">País.</param>
+        </member>
+        <member name="P:MyApp.Domain.ValueObjects.Address.Street">
+            <summary>Calle y número.</summary>
+        </member>
+        <member name="P:MyApp.Domain.ValueObjects.Address.City">
+            <summary>Ciudad.</summary>
+        </member>
+        <member name="P:MyApp.Domain.ValueObjects.Address.Country">
+            <summary>País.</summary>
+        </member>
+    </members>
+</doc>

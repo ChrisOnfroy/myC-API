@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyApp.Infraestructure</name>
+    </assembly>
+    <members>
+        <member name="T:MyApp.Infraestructure.Services.DateTimeService">
+            <summary>
+            Servicio de infraestructura para proveer la fecha y hora del sistema en UTC.
+            </summary>
+        </member>
+    </members>
+</doc>

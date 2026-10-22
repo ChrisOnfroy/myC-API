@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyApp.Application</name>
+    </assembly>
+    <members>
+        <member name="T:MyApp.Application.Interfaces.IUnitOfWork">
+            <summary>
+            Contrato de Unidad de Trabajo para confirmación de cambios.
+            </summary>
+        </member>
+        <member name="T:MyApp.Application.Interfaces.ICustomerRepository">
+            <summary>
+            Repositorio para la entidad Customer.
+            </summary>
+        </member>
+        <member name="T:MyApp.Application.Interfaces.ICategoryRepository">
+            <summary>
+            Repositorio para la entidad Category.
+            </summary>
+        </member>
+        <member name="T:MyApp.Application.Interfaces.IProductRepository">
+            <summary>
+            Repositorio para la entidad Product.
+            </summary>
+        </member>
+        <member name="T:MyApp.Application.Services.CustomerService">
+            <summary>
+            Servicio de aplicación que implementa los casos de uso para clientes.
+            </summary>
+        </member>
+    </members>
+</doc>
